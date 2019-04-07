@@ -1,0 +1,243 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Assignment_6</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-04-04"><meta name="DC.source" content="Assignment_6.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Initialize</a></li><li><a href="#2">3a)</a></li><li><a href="#3">3b)</a></li><li><a href="#4">3c)</a></li><li><a href="#5">3d)</a></li><li><a href="#6">3e)</a></li></ul></div><h2 id="1">Initialize</h2><pre class="codeinput">clc; clear; close <span class="string">all</span>;
+</pre><h2 id="2">3a)</h2><pre class="codeinput">Gdata = load(<span class="string">'prcentrality.mat'</span>);
+G = digraph(Gdata.A);
+
+fprintf(<span class="string">'PageRank centralities no longer change after 8 iterations\n'</span>);
+<span class="comment">%PageRank no longer changes past 8 iterations</span>
+pageRank = centrality(G, <span class="string">'pagerank'</span>, <span class="string">'MaxIterations'</span>, 8);
+D = [Gdata.names pageRank];
+fprintf(<span class="string">'%15s:\t%.4f\n'</span>, D');
+</pre><pre class="codeoutput">PageRank centralities no longer change after 8 iterations
+        ALGERIA:	0.0370
+      ARGENTINA:	0.0291
+         BRAZIL:	0.0417
+          CHINA:	0.0481
+ CZECHOSLOVAKIA:	0.0441
+        ECUADOR:	0.0273
+          EGYPT:	0.0351
+       ETHIOPIA:	0.0314
+        FINLAND:	0.0430
+       HONDURAS:	0.0273
+      INDONESIA:	0.0397
+         ISRAEL:	0.0304
+          JAPAN:	0.0537
+        LIBERIA:	0.0282
+     MADAGASCAR:	0.0221
+    NEW ZEALAND:	0.0395
+       PAKISTAN:	0.0396
+          SPAIN:	0.0589
+    SWITZERLAND:	0.0432
+          SYRIA:	0.0348
+       THAILAND:	0.0420
+ UNITED KINGDOM:	0.0752
+  UNITED STATES:	0.0797
+     YUGOSLAVIA:	0.0489
+</pre><h2 id="3">3b)</h2><pre class="codeinput">graphPageRank(G, Gdata.names, pageRank);
+title(<span class="string">'Network of Trades Between 24 Nations in 1992, 8 PageRank Iterations'</span>);
+</pre><img vspace="5" hspace="5" src="Assignment_6_01.png" alt=""> <h2 id="4">3c)</h2><pre class="codeinput">[B, I] = maxk(pageRank, 3);
+fprintf(<span class="string">'\n\nCountries with highest PageRank scores: \n'</span>)
+fprintf(<span class="string">'%s\n'</span>, Gdata.names(I));
+</pre><pre class="codeoutput">
+
+Countries with highest PageRank scores: 
+UNITED STATES
+UNITED KINGDOM
+SPAIN
+</pre><h2 id="5">3d)</h2><pre class="codeinput">close <span class="string">all</span>;
+<span class="comment">% FollowProbability = 0.3</span>
+pageRankFP1 = centrality(G, <span class="string">'pagerank'</span>, <span class="string">'FollowProbability'</span>, 0.3);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP1);
+title(<span class="string">'Network of Trades Between 24 Nations in 1992, 0.3 Follow Probability'</span>);
+
+<span class="comment">% FollowProbability = 0.5</span>
+pageRankFP2 = centrality(G, <span class="string">'pagerank'</span>, <span class="string">'FollowProbability'</span>, 0.5);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP2);
+title(<span class="string">'Network of Trades Between 24 Nations in 1992, 0.5 Follow Probability'</span>);
+
+<span class="comment">% FollowProbability = 0.7</span>
+pageRankFP3 = centrality(G, <span class="string">'pagerank'</span>, <span class="string">'FollowProbability'</span>, 0.7);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP3);
+title(<span class="string">'Network of Trades Between 24 Nations in 1992, 0.7 Follow Probability'</span>);
+</pre><img vspace="5" hspace="5" src="Assignment_6_02.png" alt=""> <img vspace="5" hspace="5" src="Assignment_6_03.png" alt=""> <img vspace="5" hspace="5" src="Assignment_6_04.png" alt=""> <h2 id="6">3e)</h2><pre class="codeinput">pageRankComp = [pageRank pageRankFP1 pageRankFP2 pageRankFP3];
+fprintf(<span class="string">'%20s\t%20s\t%20s\t%20s\n'</span>, <span class="string">'MaxIterations = 8'</span>, <span class="string">'FollowProbability = 0.3'</span>, <span class="string">'FollowProbability = 0.5'</span>, <span class="string">'FollowProbability = 0.7'</span>);
+fprintf(<span class="string">'%20.5f\t%20.5f\t%20.5f\t%20.5f\n'</span>, pageRankComp');
+
+explanation = [<span class="string">"Graphically, there is no drastic change between the "</span> ;
+    <span class="string">"graph plots for each of the different PageRanks calculated. "</span> ;
+    <span class="string">"For the Nations with low out-degrees but high in-degrees, the "</span> ;
+    <span class="string">"PageRank for FollowProbability begins high but rapidly decreases "</span> ;
+    <span class="string">"i.e. Liberia, Honduras, Ecuador. In contrast, the very highly "</span> ;
+    <span class="string">"connected components (United States, United Kingdom) have low "</span> ;
+    <span class="string">"initial PageRanks but rapidly increase. Lastly, as the "</span> ;
+    <span class="string">"FollowProbability value increases, the pageRank approaches that "</span> ;
+    <span class="string">"of the pageRank with 8 iterations. The values are the same when "</span> ;
+    <span class="string">"FollowProbability = 0.85."</span> ];
+fprintf(<span class="string">'%s\n'</span>, explanation);
+</pre><pre class="codeoutput">   MaxIterations = 8	FollowProbability = 0.3	FollowProbability = 0.5	FollowProbability = 0.7
+             0.03702	             0.03944	             0.03834	             0.03751
+             0.02910	             0.03685	             0.03388	             0.03109
+             0.04171	             0.04244	             0.04250	             0.04219
+             0.04808	             0.04360	             0.04508	             0.04673
+             0.04406	             0.04207	             0.04260	             0.04335
+             0.02730	             0.03612	             0.03277	             0.02960
+             0.03512	             0.03859	             0.03704	             0.03583
+             0.03135	             0.03766	             0.03522	             0.03296
+             0.04303	             0.04186	             0.04217	             0.04261
+             0.02734	             0.03589	             0.03254	             0.02948
+             0.03975	             0.04039	             0.03993	             0.03974
+             0.03037	             0.03714	             0.03450	             0.03208
+             0.05371	             0.04592	             0.04872	             0.05154
+             0.02819	             0.03623	             0.03306	             0.03019
+             0.02213	             0.03409	             0.02951	             0.02521
+             0.03955	             0.04032	             0.03981	             0.03957
+             0.03957	             0.04033	             0.03982	             0.03959
+             0.05888	             0.04855	             0.05259	             0.05629
+             0.04317	             0.04191	             0.04225	             0.04273
+             0.03479	             0.03844	             0.03682	             0.03554
+             0.04196	             0.04139	             0.04144	             0.04168
+             0.07517	             0.05779	             0.06575	             0.07176
+             0.07974	             0.05897	             0.06797	             0.07524
+             0.04890	             0.04400	             0.04567	             0.04746
+Graphically, there is no drastic change between the 
+graph plots for each of the different PageRanks calculated. 
+For the Nations with low out-degrees but high in-degrees, the 
+PageRank for FollowProbability begins high but rapidly decreases 
+i.e. Liberia, Honduras, Ecuador. In contrast, the very highly 
+connected components (United States, United Kingdom) have low 
+initial PageRanks but rapidly increase. Lastly, as the 
+FollowProbability value increases, the pageRank approaches that 
+of the pageRank with 8 iterations. The values are the same when 
+FollowProbability = 0.85.
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Initialize
+clc; clear; close all;
+
+%% 3a)
+Gdata = load('prcentrality.mat');
+G = digraph(Gdata.A);
+
+fprintf('PageRank centralities no longer change after 8 iterations\n');
+%PageRank no longer changes past 8 iterations
+pageRank = centrality(G, 'pagerank', 'MaxIterations', 8);
+D = [Gdata.names pageRank];
+fprintf('%15s:\t%.4f\n', D');
+
+%% 3b)
+graphPageRank(G, Gdata.names, pageRank);
+title('Network of Trades Between 24 Nations in 1992, 8 PageRank Iterations');
+
+%% 3c)
+[B, I] = maxk(pageRank, 3);
+fprintf('\n\nCountries with highest PageRank scores: \n')
+fprintf('%s\n', Gdata.names(I));
+
+%% 3d)
+close all;
+% FollowProbability = 0.3
+pageRankFP1 = centrality(G, 'pagerank', 'FollowProbability', 0.3);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP1);
+title('Network of Trades Between 24 Nations in 1992, 0.3 Follow Probability');
+
+% FollowProbability = 0.5
+pageRankFP2 = centrality(G, 'pagerank', 'FollowProbability', 0.5);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP2);
+title('Network of Trades Between 24 Nations in 1992, 0.5 Follow Probability');
+
+% FollowProbability = 0.7
+pageRankFP3 = centrality(G, 'pagerank', 'FollowProbability', 0.7);
+figure;
+graphPageRank(G, Gdata.names, pageRankFP3);
+title('Network of Trades Between 24 Nations in 1992, 0.7 Follow Probability');
+
+%% 3e)
+pageRankComp = [pageRank pageRankFP1 pageRankFP2 pageRankFP3];
+fprintf('%20s\t%20s\t%20s\t%20s\n', 'MaxIterations = 8', 'FollowProbability = 0.3', 'FollowProbability = 0.5', 'FollowProbability = 0.7');
+fprintf('%20.5f\t%20.5f\t%20.5f\t%20.5f\n', pageRankComp');
+
+explanation = ["Graphically, there is no drastic change between the " ;
+    "graph plots for each of the different PageRanks calculated. " ;
+    "For the Nations with low out-degrees but high in-degrees, the " ;
+    "PageRank for FollowProbability begins high but rapidly decreases " ;
+    "i.e. Liberia, Honduras, Ecuador. In contrast, the very highly " ;
+    "connected components (United States, United Kingdom) have low " ;
+    "initial PageRanks but rapidly increase. Lastly, as the " ;
+    "FollowProbability value increases, the pageRank approaches that " ;
+    "of the pageRank with 8 iterations. The values are the same when " ;
+    "FollowProbability = 0.85." ];
+fprintf('%s\n', explanation);
+##### SOURCE END #####
+--></body></html>
