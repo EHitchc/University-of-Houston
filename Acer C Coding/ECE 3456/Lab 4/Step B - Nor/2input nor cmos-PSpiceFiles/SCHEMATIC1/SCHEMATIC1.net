@@ -1,0 +1,9 @@
+* source 2INPUT NOR CMOS
+.EXTERNAL INPUT Vout
+M_M2         VOUT N00229 0 0 Mbreakn           
+M_M3         VOUT N00238 0 0 MbreakN           
+V_A         N00229 0 5
+V_B         N00238 0 5
+V_Vdd         N01147 0 5Vdc
+M_M4         N00104 N00229 N01147 N01147 MbreakP           
+M_M5         VOUT N00238 N00104 N01147 Mbreakp           

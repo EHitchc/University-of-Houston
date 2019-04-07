@@ -1,0 +1,114 @@
+Lab 3 - ECE 3436
+Freescale HC12-Assembler 
+(c) Copyright Freescale 1987-2010
+
+ Abs. Rel.   Loc    Obj. code   Source line
+ ---- ----   ------ ---------   -----------
+    1    1                                  TITLE "Lab 3 - ECE 3436"
+    2    2                      
+    3    3                      ; Lab 3 - ECE 3436 - Spring 2017
+    4    4                      ; Authors: Ethan Hitchcock and Audrey Wang
+    5    5                      ; Lab Group 13A
+    6    6                      ;    This program reads in two strings of 
+    7    7                      ;    text characters from the serial input,
+    8    8                      ;    process the two strings, and writes the 
+    9    9                      ;    results of the processing to the serial
+   10   10                      ;    output.
+   11   11                      ;
+   12   12                      ;******************************************
+   13   13                      ; External symbol declarations (imported)
+   14   14                              XREF    __SEG_END_SSTACK
+   15   15                              XREF    countMatches
+   16   16                              XREF    SCI_Init,SCI_InString
+   17   17                              XREF    SCI_OutString,SCI_OutUDec
+   18   18                              XREF    reset
+   19   19                      ;******************************************
+   20   20                      ; Internal symbol definitions (exported)
+   21   21                              XDEF    Entry, main
+   22   22                              
+   23   23                      ;******************************************
+   24   24                      ; Include derivative specific macros
+   25   25                              INCLUDE 'mc9s12c32.inc'
+ 5468   26                              
+ 5469   27                      ;******************************************
+ 5470   28                      ; Constant equates
+ 5471   29          0000 001E    MAX_STRING:  EQU 30
+ 5472   30          0000 0000    EOS:         EQU 0
+ 5473   31          0000 000D    CR:          EQU 13
+ 5474   32          0000 000A    LF:          EQU $0a
+ 5475   33                      ;******************************************
+ 5476   34                      ; Code Section Start
+ 5477   35                      Code:   SECTION
+ 5478   36                      Entry:
+ 5479   37                      main:
+ 5480   38                      ; Initialization
+ 5481   39                      ; Initialize stack pointer
+ 5482   40   000000 CFxx xx             lds      #__SEG_END_SSTACK
+ 5483   41                              
+ 5484   42                      ; Initialize serial port to 9600 bits/sec
+ 5485   43   000003 CC25 80             ldd      #9600
+ 5486   44   000006 16xx xx             jsr      SCI_Init
+ 5487   45                              
+ 5488   46                      LOOP:   
+ 5489   47                      ; String 1     
+ 5490   48   000009 CExx xx             ldx      #Str_In_1
+ 5491   49   00000C 34                  pshx
+ 5492   50   00000D CC00 1E             ldd      #MAX_STRING        
+ 5493   51   000010 16xx xx             jsr      SCI_InString
+ 5494   52                              
+ 5495   53   000013 CCxx xx             ldd      #CAR
+ 5496   54   000016 16xx xx             jsr      SCI_OutString
+ 5497   55                         
+ 5498   56                       ; String 2       
+ 5499   57   000019 CExx xx             ldx      #Str_In_2
+ 5500   58   00001C 34                  pshx
+ 5501   59   00001D CC00 1E             ldd      #MAX_STRING       
+ 5502   60   000020 16xx xx             jsr      SCI_InString
+ 5503   61                              
+ 5504   62   000023 CCxx xx             ldd      #CAR
+ 5505   63   000026 16xx xx             jsr      SCI_OutString
+ 5506   64                              
+Lab 3 - ECE 3436
+Freescale HC12-Assembler 
+(c) Copyright Freescale 1987-2010
+
+ Abs. Rel.   Loc    Obj. code   Source line
+ ---- ----   ------ ---------   -----------
+ 5507   65                      ; Jump to subroutine countMatches
+ 5508   66   000029 CExx xx             ldx      #Str_In_1
+ 5509   67   00002C CDxx xx             ldy      #Str_In_2
+ 5510   68   00002F 16xx xx             jsr      countMatches   ;Counter stored
+ 5511   69                                                      ;in B
+ 5512   70                      ; Print number of matches
+ 5513   71                              
+ 5514   72   000032 8600                ldaa     #0
+ 5515   73   000034 16xx xx             jsr      SCI_OutUDec
+ 5516   74   000037 CCxx xx             ldd      #MATCHES_FOUND
+ 5517   75   00003A 16xx xx             jsr      SCI_OutString
+ 5518   76   00003D CCxx xx             ldd      #CAR
+ 5519   77   000040 16xx xx             jsr      SCI_OutString 
+ 5520   78                              
+ 5521   79   000043 CExx xx             ldx      #Str_In_1
+ 5522   80   000046 CDxx xx             ldy      #Str_In_2
+ 5523   81   000049 16xx xx             jsr      reset  
+ 5524   82                              
+ 5525   83                      ; Do forever
+ 5526   84   00004C 20BB                bra      LOOP
+ 5527   85                              
+ 5528   86                      ;******************************************
+ 5529   87                      ; Constant data in ROM
+ 5530   88                      Const:  SECTION
+ 5531   89   000000 0D0A 00     CAR:              DC.B  CR,LF,EOS
+ 5532   90   000003 206D 6174   MATCHES_FOUND:    DC.B  ' matches were found.',EOS
+             000007 6368 6573  
+             00000B 2077 6572  
+             00000F 6520 666F  
+             000013 756E 642E  
+             000017 00         
+ 5533   91                      ;******************************************
+ 5534   92                      ; Variable data in RAM
+ 5535   93                      Data:   SECTION
+ 5536   94                      
+ 5537   95   000000             Str_In_1:  DS.B   MAX_STRING  ; array 1
+ 5538   96   00001E             Str_In_2:  DS.B   MAX_STRING  ; array 2
+ 5539   97                      

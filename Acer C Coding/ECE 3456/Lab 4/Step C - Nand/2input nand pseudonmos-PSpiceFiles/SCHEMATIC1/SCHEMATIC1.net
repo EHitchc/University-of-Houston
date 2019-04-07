@@ -1,0 +1,8 @@
+* source 2INPUT NAND PSEUDONMOS
+.EXTERNAL INPUT Vout
+M_M2         VOUT N00229 N00130 0 Mbreakn           
+M_M3         N00130 N00238 0 0 MbreakN           
+V_A         N00229 0 5Vdc
+V_B         N00238 0 5Vdc
+V_Vdd         N01057 0 5Vdc
+M_M4         VOUT 0 N01057 N01057 MbreakP           

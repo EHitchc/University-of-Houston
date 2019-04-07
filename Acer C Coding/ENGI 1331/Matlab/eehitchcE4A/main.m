@@ -1,0 +1,138 @@
+%ENGI 1331 Exam 4A - Ethan Hitchcock - eehitchc
+clc, clear all, close all;
+disp('ENGI 1331 Exam 4A - Ethan Hitchcock - eehitchc');
+
+%Fritz is my friend
+disp(' '), disp('Fritz is my friend'), disp(' ');
+
+%% Task 1:
+disp(' '), disp(' '), disp('Task 1'), disp(' ');
+
+%Load in survey data
+disp('Load in survey data');
+survey = load('fc_survey_answer.csv');
+
+%Get size of survey array
+disp(' '), disp('Get size of survey array'), disp(' ');
+[rows, columns] = size(survey);
+
+%Calculate average answer for each question
+disp('Calculate average answer for each question'), disp(' ');
+j=1;
+for i=2:columns
+    ARESPONSE(j) = mean(survey(:,i));
+    j=j+1;
+end
+
+%Display average answer for each question
+for j=1:10
+    fprintf('The average answer for question %.0f is %f\n', j, ARESPONSE(j)); 
+end
+
+disp(' '), disp('Press any key to continue...'), pause;
+
+%% Task 2:
+disp(' '), disp(' '), disp('Task 2'), disp(' ');
+
+%Write a user defined function called SAM.m to calculate the spectral angle
+disp('Write a user defined function called SAM.m to calculate the spectral angle');
+
+disp(' '), disp('Press any key to continue...'), pause;
+
+%% Task 3:
+disp(' '), disp(' '), disp('Task 3'), disp(' ');
+
+%Use SAM to determine which student is most and least compatible with the
+%average response
+disp('Use SAM to determine which student is most and least compatible with the average response'), disp(' ');
+
+%Using function SAMComp
+[mostcompat, leastcompat]=SAMComp(ARESPONSE,survey);
+
+%Display most and least compatible students
+fprintf('   The student most compatible with the average answers is: %.0f\n   The student least compatible with the average answers is: %.0f\n', mostcompat, leastcompat);
+
+disp(' '), disp('Press any key to continue...'), pause;
+
+%% Task 4:
+disp(' '), disp(' '), disp('Task 4'), disp(' ');
+
+%STEP 1: DEFINE THE PROBLEM
+disp('STEP 1: DEFINE THE PROBLEM:')
+%Find the perimeter value in a data set and then maximise the volume of a
+%cylinder
+disp('Find the perimeter value in a data set and then maximise the volume of a cylinder'), disp(' ');
+
+disp('Press any key to continue to STEP 2'), disp(' '), pause;
+
+%STEP 2: COLLECT INFORMATION
+disp('STEP 2: COLLECT INFORMATION:')
+%Load in text file to MS
+disp('Load in text file to variable called MS'), disp(' ');
+MS=load('e4.txt');
+
+disp('Press any key to continue to STEP 3'), disp(' '), pause;
+
+%STEP 3: GENERATE A SOLUTION
+disp('STEP 3: GENERATE A SOLUTION'),
+%Vectorize the independent variable and consequently vectorize the
+%dependent variable
+disp('Vectorize the independent variable and consequently vectorize the dependent variable');
+%Note: Perimeter = 2*h + 2*r, This implies r = (Perimeter - 2*h)/2
+disp('Note: Perimeter = 2*h + 2*r, This implies r = (Perimeter - 2*h)/2');
+%So vectorize the independent variable, h and find the corresponding r
+%values then find the values which give the maximum value for volume of a
+%cyclinder
+disp('So vectorize the independent variable, h and find the corresponding r values then find the values which give the maximum volume for a cyclinder'), disp(' ');
+
+disp('Press any key to continue to STEP 4'), disp(' '), pause;
+
+%STEP 4: IMPLEMENT THE SOLUTION
+disp('STEP 4: IMPLEMENT THE SOLUTION');
+
+%First find the value of the perimeter in the data set
+disp(' '), disp('First find the value of the perimeter in the data set');
+[rowsT4, columnsT4] = size(MS);
+p = MS(rowsT4, columnsT4-1);
+fprintf('\n   The value for perimeter is: %.0f\n', p);
+
+%Vectorize h from 0.01 to perimeter value
+disp(' '), disp('Vectorize h from 0.1 to perimeter value/2');
+h = linspace(.01,p/2,250);
+
+%Vectorize r given h
+disp(' '), disp('Vectorize r given h');
+r = (p - 2.*h)./2;
+
+%Calculate volumes for cylinder
+disp(' '), disp('Calculate volumes for cyclinder');
+v = 3.14.*r.^2.*h;
+
+%Find the max value of v
+disp(' '), disp('Find the max value of v');
+Max_v = max(v);
+
+%Find the relative position for this max_v
+disp(' '), disp('Find the relative position for this Max_v');
+position = find(v==Max_v);
+
+%This means max volume achieved for
+disp(' '), disp('This means max volume achieved for:');
+fprintf('   r = %f\n   h = %f\n', r(position), h(position));
+
+disp(' '), disp('Press any key to continue to step 5');
+
+%STEP 5: VERIFY SOLUTION
+disp(' '), disp('STEP 5: VERIFY SOLUTION'), pause;
+
+figure(1);
+plot(h, v); xlabel('Height'); ylabel('Volume');
+
+disp(' '), disp('Graph suggests found solutions are valid');
+
+disp(' '), disp('Press any key to view solutions'), pause;
+
+%Output calculated solutions
+fprintf('\n\n   Maximum values for values are\n     Max Volume: %f\n     Max Height: %f\n     Max Width: %f\nN.B. Max width for cylinder is 2*max width of rectangle', Max_v, h(position), 2*r(position));
+
+disp(' '), disp('Press any key to end script'), pause;

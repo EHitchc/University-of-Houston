@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487090867 source:d:\hdd\ethan\coding\ethan project 4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

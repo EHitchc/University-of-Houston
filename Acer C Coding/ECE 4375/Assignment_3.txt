@@ -1,0 +1,79 @@
+clc; clear all; close all;
+
+%% 3.14(d)
+syms s;
+
+d1 = ilaplace(1/s)
+d2 = ilaplace((-s+1)/(s^2+s+2))
+
+%% 3.14(g)
+
+g1 = 2*ilaplace(-1/(s+2))
+g2 = 2*ilaplace(1/(s+1))
+g3 = 2*ilaplace(exp(-s) * (2/(s+2)))
+g4 = 2*ilaplace(exp(-s) * (- 1/(s+1)))
+g5 = 4*ilaplace(exp(-2*s) * (1/(s+1)))
+g6 = 4*ilaplace(exp(-2*s) * (-1/(s+2)))
+
+%% 3.14(h)
+
+h1 = -1/2 * ilaplace(1/(s+1))
+h2 = 3 * ilaplace(1/(s+2))
+h3 = -5/2 * ilaplace(1/(s+3))
+
+Output:
+
+d1 =
+ 
+1
+ 
+ 
+d2 =
+ 
+-exp(-t/2)*(cos((7^(1/2)*t)/2) - (3*7^(1/2)*sin((7^(1/2)*t)/2))/7)
+ 
+ 
+g1 =
+ 
+-2*exp(-2*t)
+ 
+ 
+g2 =
+ 
+2*exp(-t)
+ 
+ 
+g3 =
+ 
+4*heaviside(t - 1)*exp(2 - 2*t)
+ 
+ 
+g4 =
+ 
+-2*heaviside(t - 1)*exp(1 - t)
+ 
+ 
+g5 =
+ 
+4*heaviside(t - 2)*exp(2 - t)
+ 
+ 
+g6 =
+ 
+-4*heaviside(t - 2)*exp(4 - 2*t)
+ 
+ 
+h1 =
+ 
+-exp(-t)/2
+ 
+ 
+h2 =
+ 
+3*exp(-2*t)
+ 
+ 
+h3 =
+ 
+-(5*exp(-3*t))/2
+ 

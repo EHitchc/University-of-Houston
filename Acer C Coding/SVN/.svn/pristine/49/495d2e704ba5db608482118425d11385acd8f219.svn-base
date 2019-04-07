@@ -1,0 +1,32 @@
+Assignment #1
+COSC 4351
+
+Due Date: September 14, 2018 23:59:59
+
+Description: 
+You have been asked to build an admin portal that will allow your company internal employees to access the portal and perform admin functions on behalf of company clients.
+
+Here are additional details:
+
+(a) Application is accessible only on company network. 
+(b) Access to the links is role based i.e. only authenticated internal admins are able to access the portal and what links you can access once on the portal is determined based on what roles you have. So, same link will not be visible to other admin who doesn't have appropriate role to access the link.
+(c) There are some global links that are available to all admins.
+(d) The links redirect users to the admin application that is not developed by you.
+
+You are asked to recommend a software development process for the proposed system.
+
+1. Is the waterfall model a good choice for developing this system? Only Yes or No
+No.
+
+2. Give four reasons to support your answer in 1.
+An agile solution would be more beneficial to the development of the admin portal as the detail b) ambiguously states “what links you can access… is determined based on what roles you have” without explicitly defining these roles. It is likely that new roles will form, or old roles will evolve during the development of the admin portal so it would be more effective to have the company involved during the design process to best adjust the specifications accordingly. Additionally, as the application is only to be accessed on the company network, an agile solution would allow for the client to test each iteration of the software and insure there are no conflicts with their current systems.
+
+3. Is iterative development leading to a single release of the system a good choice for developing this system? Only Yes or No
+
+4. Give four reasons to support your answer in 3.
+
+5. Is agile development with releases of small increments of software a good choice for developing this system? Only Yes or No
+
+6. Give four reasons to support your answer in 5.
+
+7. What are your first thoughts on how you will approach the solution?

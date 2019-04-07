@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1488868289 source:d:\hdd\ethan\coding\project 7\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

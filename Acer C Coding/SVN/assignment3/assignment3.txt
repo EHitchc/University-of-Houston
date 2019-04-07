@@ -1,0 +1,22 @@
+Assignment #3
+COSC 4351
+
+Due Date: October 12, 2018 23:59:59
+
+Description: 
+You have been asked to build an admin portal that will allow your company internal employees to access the portal and perform admin functions on behalf of company clients.
+
+Here are additional details:
+
+(a) Application is accessible only on company network. 
+(b) Access to the links is role based i.e. only authenticated internal admins are able to access the portal and what links you can access once on the portal is determined based on what roles you have. So, same link will not be visible to other admin who doesn't have appropriate role to access the link.
+(c) There are some global links that are available to all admins.
+(d) The links redirect users to the admin application that is not developed by you.
+
+Based on above requirements provide followings:
+
+1. What design patterns are you going to use? What is the reason for using it? (20)
+2. What technologies / frameworks are you going to use to implement the solution? (20)
+3. What development methodology are you planning to use and why? (20)
+4. Discuss testing methodology to make sure all functional requiremens are met. (20)
+5. How will you address the changes in requirements and resources when you are half way donewith implementation? What areas will be impacted with changes? (20) 

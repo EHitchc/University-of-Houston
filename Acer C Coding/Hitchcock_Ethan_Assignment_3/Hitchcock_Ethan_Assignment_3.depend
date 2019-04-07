@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1486526643 source:d:\hdd\ethan\coding\hitchcock_ethan_assignment_3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

@@ -1,0 +1,14 @@
+.ALIASES
+M_M4            M4(d=VOUT g=N02021 s=N01581 b=0 ) CN @XOR.SCHEMATIC1(sch_1):INS1506@BREAKOUT.MbreakN.Normal(chips)
+M_M5            M5(d=N01581 g=N03121 s=VOUT b=N015633 ) CN @XOR.SCHEMATIC1(sch_1):INS1549@BREAKOUT.MbreakP.Normal(chips)
+X_U1A           U1A(A=N02021 Y=N03121 VCC=$G_DPWR GND=$G_DGND ) CN @XOR.SCHEMATIC1(sch_1):INS3996@74LS.74LS04.Normal(chips)
+M_M6            M6(d=VOUT g=N03121 s=N04400 b=0 ) CN @XOR.SCHEMATIC1(sch_1):INS4368@BREAKOUT.MbreakN.Normal(chips)
+M_M7            M7(d=N04400 g=N02021 s=VOUT b=N044983 ) CN @XOR.SCHEMATIC1(sch_1):INS4484@BREAKOUT.MbreakP.Normal(chips)
+C_C2            C2(1=0 2=VOUT ) CN @XOR.SCHEMATIC1(sch_1):INS4448@ANALOG.C.Normal(chips)
+X_U1B           U1B(A=N04400 Y=N01581 VCC=$G_DPWR GND=$G_DGND ) CN @XOR.SCHEMATIC1(sch_1):INS5365@74LS.74LS04.Normal(chips)
+V_B             B(+=N04400 -=0 ) CN @XOR.SCHEMATIC1(sch_1):INS5562@SOURCE.VDC.Normal(chips)
+V_A             A(+=N02021 -=0 ) CN @XOR.SCHEMATIC1(sch_1):INS5653@SOURCE.VDC.Normal(chips)
+V_Vdd           Vdd(+=N044983 -=0 ) CN @XOR.SCHEMATIC1(sch_1):INS6061@SOURCE.VDC.Normal(chips)
+V_Vdd1          Vdd1(+=N015633 -=0 ) CN @XOR.SCHEMATIC1(sch_1):INS6187@SOURCE.VDC.Normal(chips)
+_    _(Vout=VOUT)
+.ENDALIASES
