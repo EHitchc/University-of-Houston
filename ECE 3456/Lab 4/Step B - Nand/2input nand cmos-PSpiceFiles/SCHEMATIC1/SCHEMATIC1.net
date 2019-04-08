@@ -1,9 +1,0 @@
-* source 2INPUT NAND CMOS
-.EXTERNAL INPUT Vout
-M_M2         VOUT N00229 N00130 0 Mbreakn           
-M_M3         N00130 N00238 0 0 MbreakN           
-V_A         N00229 0 0
-V_B         N00238 0 5
-V_Vdd         N01147 0 5Vdc
-M_M4         VOUT N00229 N01147 N01147 MbreakP           
-M_M5         VOUT N00238 N01147 N01147 Mbreakp           

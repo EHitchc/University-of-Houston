@@ -1,0 +1,279 @@
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "Test.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../cmos transmission gate-PSpiceFiles/2input nand enhancement load.lib" 
+.LIB "../../../cmos transmission gate-PSpiceFiles/2INPUT NOR ENHANCEMENT LOAD.lib" 
+* From [PSPICE NETLIST] section of C:\Users\Ethan\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice\17.2.0\PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.DC LIN V_A 0 5 1 
++ LIN V_Vin 0 5 1 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source CMOS TRANSMISSION GATE
+.EXTERNAL INPUT Vout
+V_A         N01859 0 0
+M_M4         VOUT N01859 N01581 0 Mbreakn           
+M_M5         N01581 N03121 VOUT N01581 Mbreakp           
+V_Vin         N01581 0 5
+X_U1A         N01859 N03121 $G_DPWR $G_DGND 74LS04 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+C_C1         0 VOUT  10n  TC=0,0 
+
+**** RESUMING Test.cir ****
+.END
+
+
+**** Generated AtoD and DtoA Interfaces ****
+
+*
+* Analog/Digital interface for node N01859
+*
+* Moving X_U1A.U1:IN1 from analog node N01859 to new digital node N01859$AtoD
+X$N01859_AtoD1
++ N01859
++ N01859$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_LS
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface for node N03121
+*
+* Moving X_U1A.U1:OUT1 from analog node N03121 to new digital node N03121$DtoA
+X$N03121_DtoA1
++ N03121$DtoA
++ N03121
++ $G_DPWR
++ $G_DGND
++ DtoA_LS
++       PARAMS: DRVH= 108    DRVL= 157    CAPACITANCE=   0     
+*
+* Analog/Digital interface power supply subcircuits
+*
+X$DIGIFPWR 0 DIGIFPWR
+
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Mbreakp         Mbreakn         
+               PMOS            NMOS            
+       LEVEL    1               1            
+           L  100.000000E-06  100.000000E-06 
+           W  100.000000E-06  100.000000E-06 
+         VTO   -1.32             .91         
+          KP  635.200000E-06  685.600000E-06 
+       GAMMA    0               0            
+         PHI     .6              .6          
+      LAMBDA    0               0            
+          IS   10.000000E-15   10.000000E-15 
+          JS    0               0            
+          PB     .8              .8          
+        PBSW     .8              .8          
+          CJ    0               0            
+        CJSW    0               0            
+        CGSO    0               0            
+        CGDO    0               0            
+        CGBO    0               0            
+         TOX    0               0            
+          XJ    0               0            
+       UCRIT   10.000000E+03   10.000000E+03 
+      DIOMOD    1               1            
+         VFB    0               0            
+        LETA    0               0            
+        WETA    0               0            
+          U0    0               0            
+        TEMP    0               0            
+         VDD    5               5            
+       XPART    0               0            
+
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     Digital Input MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               DIN74LS         
+      S0NAME 0               
+       S0TSW    5.000000E-09 
+       S0RLO    1            
+       S0RHI  100.000000E+03 
+      S1NAME 1               
+       S1TSW    4.500000E-09 
+       S1RLO  100.000000E+03 
+       S1RHI    1            
+      S2NAME X               
+       S2TSW    4.500000E-09 
+       S2RLO   30.9          
+       S2RHI  100            
+      S3NAME R               
+       S3TSW    4.500000E-09 
+       S3RLO   30.9          
+       S3RHI  100            
+      S4NAME F               
+       S4TSW    4.500000E-09 
+       S4RLO   30.9          
+       S4RHI  100            
+      S5NAME Z               
+       S5TSW    4.500000E-09 
+       S5RLO  200.000000E+03 
+       S5RHI  200.000000E+03 
+
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     Digital Output MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               DO74LS          
+    TIMESTEP  100.000000E-12 
+      S0NAME X               
+       S0VHI    2            
+       S0VLO     .8          
+      S1NAME 0               
+       S1VHI     .8          
+       S1VLO   -1.5          
+      S2NAME R               
+       S2VHI    1.2          
+       S2VLO     .8          
+      S3NAME R               
+       S3VHI    2            
+       S3VLO    1.1          
+      S4NAME X               
+       S4VHI    2            
+       S4VLO     .8          
+      S5NAME 1               
+       S5VHI    7            
+       S5VLO    2            
+      S6NAME F               
+       S6VHI    2            
+       S6VLO    1.1          
+      S7NAME F               
+       S7VHI    1.2          
+       S7VLO     .8          
+
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     Digital Gate MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D_LS04          
+      TPLHMN    3.600000E-09 
+      TPLHTY    9.000000E-09 
+      TPLHMX   15.000000E-09 
+      TPHLMN    4.000000E-09 
+      TPHLTY   10.000000E-09 
+      TPHLMX   15.000000E-09 
+
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     Digital IO  MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IO_LS           
+        DRVL  157            
+        DRVH  108            
+       AtoD1 AtoD_LS         
+       AtoD2 AtoD_LS_NX      
+       AtoD3 AtoD_LS         
+       AtoD4 AtoD_LS_NX      
+       DtoA1 DtoA_LS         
+       DtoA2 DtoA_LS         
+       DtoA3 DtoA_LS         
+       DtoA4 DtoA_LS         
+      TSWHL1    2.724000E-09 
+      TSWHL2    2.724000E-09 
+      TSWHL3    2.724000E-09 
+      TSWHL4    2.724000E-09 
+      TSWLH1    2.104000E-09 
+      TSWLH2    2.104000E-09 
+      TSWLH3    2.104000E-09 
+      TSWLH4    2.104000E-09 
+       TPWRT  100.000000E+03 
+
+
+
+          JOB CONCLUDED
+
+**** 11/29/18 09:17:15 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-Test"  [ c:\users\ethan\documents\ece 3456\lab 5\step a\cmos transmission gate-PSpiceFiles\SCHEMATIC1\Test.s
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .11
+

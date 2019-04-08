@@ -1,0 +1,6 @@
+* source CMOS INVERTER
+.EXTERNAL OUTPUT Vout
+V_Vin         N00673 0 0Vdc
+V_Vdd         N00619 0 5Vdc
+M_M1         VOUT N00673 0 0 Mbreakn           
+M_M2         VOUT N00673 N00619 N00619 Mbreakp           

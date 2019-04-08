@@ -1,0 +1,8 @@
+* source 2INPUT NAND ENHANCEMENT LOAD
+.EXTERNAL INPUT Vout
+M_M1         N00207 N00207 VOUT VOUT MbreakN           
+M_M2         VOUT N00229 N00130 0 Mbreakn           
+M_M3         N00130 N00238 0 0 MbreakN           
+V_A         N00229 0 0
+V_B         N00238 0 5
+V_Vdd         N00207 0 5Vdc

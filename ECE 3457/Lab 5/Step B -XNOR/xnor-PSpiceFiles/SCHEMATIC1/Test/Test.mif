@@ -1,0 +1,11 @@
+ lib="c:\users\ethan\documents\ece 3456\lab 5\step a\2input nand enhancement load-pspicefiles\2input nand enhancement load.lib", offset=42, size=42
+ lib=, offset=43, size=41
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\74ls.lib, offset=2161, size=190
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\74ls.lib, offset=2352, size=244
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=95086, size=363
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=96787, size=225
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=97995, size=843
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=7572, size=259
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=99459, size=318
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=100102, size=308
+ lib=C:\Cadence\SPB_17.2\tools\PSpice\Library\dig_io.lib, offset=97399, size=595

@@ -1,6 +1,0 @@
-* PSpice Model Editor - Version 17.2.0
-*$
-.model Mbreakp PMOS VTO=-1 Kp=100u
-*$
-.model Mbreakn NMOS VTO=1 Kp=400u
-*$

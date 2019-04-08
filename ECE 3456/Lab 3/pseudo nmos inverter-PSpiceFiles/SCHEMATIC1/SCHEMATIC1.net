@@ -1,6 +1,0 @@
-* source PSEUDO NMOS INVERTER
-.EXTERNAL OUTPUT Vout
-V_Vdd         N02067 0 5Vdc
-M_M1         VOUT N02058 0 0 Mbreakn           
-M_M2         VOUT 0 N02067 N02067 Mbreakp           
-V_Vdd1         N02058 0 2.78885

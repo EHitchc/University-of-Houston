@@ -1,0 +1,7 @@
+.ALIASES
+V_Vin           Vin(+=N00673 -=0 ) CN @CMOS INVERTER.SCHEMATIC1(sch_1):INS683@SOURCE.VDC.Normal(chips)
+V_Vdd           Vdd(+=N00619 -=0 ) CN @CMOS INVERTER.SCHEMATIC1(sch_1):INS601@SOURCE.VDC.Normal(chips)
+M_M1            M1(d=VOUT g=N00673 s=0 b=0 ) CN @CMOS INVERTER.SCHEMATIC1(sch_1):INS651@BREAKOUT.MbreakN.Normal(chips)
+M_M2            M2(d=VOUT g=N00673 s=N00619 b=N00619 ) CN @CMOS INVERTER.SCHEMATIC1(sch_1):INS1091@BREAKOUT.MbreakP.Normal(chips)
+_    _(Vout=VOUT)
+.ENDALIASES
