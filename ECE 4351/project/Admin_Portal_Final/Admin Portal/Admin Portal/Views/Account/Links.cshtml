@@ -1,0 +1,183 @@
+﻿@model Admin_Portal.Models.AccountViewModels.LinksViewModel
+
+@{
+    ViewData["Title"] = "Links";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Links</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.EName):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.EName)
+        </dd>
+
+        <dd>
+
+            <a href="#" data-toggle="modal" data-target="#myModal_Search" class="btn btn-default">Add Role to User</a>
+        </dd>
+    </dl>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                <text>Link Description</text>
+            </th>
+            <th>
+                <text>Link</text>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Roles)
+        {
+        <tr id="Drow_@item.Id">
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+            <td><a href="#" onclick="ConfirmRemoveRole(@item.Id)">Remove</a></td>
+            @*<a href="#" data-toggle="modal" data-target="#delete_modal" data-id="@item.Id">Delete</a>
+                <a asp-action="Links" asp-route-id="@item.Id">Remove</a>*@
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@* Following deletes role using modal*@
+<div class="modal fade bootstrapmodal" id="myModal_Delete" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Remove User Role</h4>
+            </div>
+
+            <div class="modal-body">
+                <text>You will have to reassign the employee this role if you wish to grant them access again.</text>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-danger" onclick="RemoveRole()">Remove</a>
+                @*<a href='#' id='UserIDLink' class="btn btn-danger" >Delete</a>*@
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hiddenRoleId" />
+
+</div>
+
+@* Following Shows Available roles using modal*@
+<div class="modal fade bootstrapmodal" id="myModal_Search" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Available User Roles</h4>
+            </div>
+
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <text>Link Description</text>
+                            </th>
+                            <th>
+                                <text>Link</text>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AvailableRoles)
+        {
+                        <tr id="Arow_@item.Id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Link)
+                            </td>
+                            <td>
+                            <td><a href="#" onclick="AddRole(@item.Id)">Add</a>
+                            </td>
+                        </tr>
+        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hiddenModelId" />
+
+</div>
+
+<script>
+        @*$('#delete_modal').on('show.bs.modal', function (e) {
+            var modalId = $(e.relatedTarget).data('id');
+            $('#UserIDLink').attr('href', "Delete?" + modalId)
+
+        })*@
+
+        @*Begin Delete Modal*@
+        var ConfirmRemoveRole = function (RoleId) {
+
+            $("#hiddenRoleId").val(RoleId);
+            $("#myModal_Delete").modal('show');
+
+        }
+
+    var RemoveRole = function () {
+        
+        var e = "@Model.User.Email";
+        var roleId = $("#hiddenRoleId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Account/RemoveRole",
+            data: { userEmail: e, roleId: roleId },
+            success: function () {
+                $("#myModal_Delete").modal("hide");
+                $("#Drow_" + roleId).remove();
+            }
+
+        })
+    }
+
+            @* Begin Add Modal *@
+            var AddRole = function (RoleId) {
+            var e = "@Model.User.Email";
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Account/AddRole",
+                    data: { userEmail: e, roleId: RoleId },
+                    success: function () {
+                        $("#Arow_" + RoleId).remove();
+                    }
+
+                })
+
+        }
+</script>

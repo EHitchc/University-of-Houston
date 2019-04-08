@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1491499969 source:d:\hdd\ethan\coding\project 9\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<ctype.h>
-

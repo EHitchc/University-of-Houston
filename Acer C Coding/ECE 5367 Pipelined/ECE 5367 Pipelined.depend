@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1525278156 source:d:\hdd\ethan\coding\ece 5367 pipelined\main.cpp
-	<iostream>
-	<stdio.h>
-	<stdlib.h>
-	<string>
-	<fstream>
-	<cstring>
-
