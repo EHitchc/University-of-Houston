@@ -1,0 +1,109 @@
+Lab 2 - ECE 4436
+Freescale HC12-Assembler 
+(c) Copyright Freescale 1987-2005
+
+ Abs. Rel.   Loc    Obj. code   Source line
+ ---- ----   ------ ---------   -----------
+    1    1                                  TITLE "Lab 2 - ECE 4436"
+    2    2                      
+    3    3                      ; Lab 2 - ECE 4436 - Spring 2017
+    4    4                      ; Authors: Audrey Wang and Ethan Hitchcock
+    5    5                      ;
+    6    6                      ;******************************************
+    7    7                      ; External symbol declarations (imported)
+    8    8                              XREF    __SEG_END_SSTACK
+    9    9                      ;******************************************
+   10   10                      ; Internal symbol definitions (exported)
+   11   11                              XDEF    Entry, main
+   12   12                      ;******************************************
+   13   13                      ; Include derivative specific macros
+   14   14                              INCLUDE 'mc9s12c32.inc'
+ 5396   15                              XREF    SCI_Init,SCI_OutChar
+ 5397   16                      ;******************************************
+ 5398   17                      ; Constant equates
+ 5399   18          0000 0003    T_SETTING:   EQU %00000011
+ 5400   19          0000 000C    IN_SETTING:  EQU %00001100
+ 5401   20                      
+ 5402   21                      ;******************************************
+ 5403   22                      ; Code Section Start
+ 5404   23                      Code:   SECTION
+ 5405   24                      Entry:
+ 5406   25                      main:
+ 5407   26                      ; Initialization
+ 5408   27                      ; Initialize stack pointer
+ 5409   28   000000 CFxx xx             lds       #__SEG_END_SSTACK
+ 5410   29                      
+ 5411   30                      ; Initialize Serial port to 9600 buts/sec
+ 5412   31   000003 CC25 80             ldd       #9600
+ 5413   32   000006 16xx xx             jsr       SCI_Init
+ 5414   33                              
+ 5415   34                      ; Initialize PT0 and PT1 to turn LED off
+ 5416   35   000009 1C02 4003           bset      PTT, T_SETTING
+ 5417   36                              
+ 5418   37                      ; Initialize DDRT Registers
+ 5419   38                      ; PT0 and PT1 to output, PT2 and PT3 to input
+ 5420   39   00000D 1C02 4203           bset      DDRT, T_SETTING
+ 5421   40   000011 1D02 420C           bclr      DDRT, IN_SETTING
+ 5422   41                      ;
+ 5423   42                      ; Initialize A to != 0 or 1        
+ 5424   43   000015 8602                ldaa      #2
+ 5425   44                      
+ 5426   45                      LOOP:
+ 5427   46                      ; Read Input from pins
+ 5428   47   000017 16xx xx             jsr       ReadSwitches
+ 5429   48   00001A 16xx xx             jsr       WriteSwitches
+ 5430   49                              
+ 5431   50   00001D 1817                cba                         ;If B == previous value of B stored in holder
+ 5432   51   00001F 2703                beq       SKIP_OUTPUT_SERIAL;Skip output in TERA
+ 5433   52   000021 16xx xx             jsr       SCI_OutChar        
+ 5434   53                      SKIP_OUTPUT_SERIAL:
+ 5435   54   000024 B781                exg       A, B              ;Store new B in A
+ 5436   55                              
+ 5437   56   000026 20EF                bra       LOOP
+ 5438   57                              
+ 5439   58                      ;******************************************
+ 5440   59                      ; Code Section ReadSwitches
+ 5441   60                      ReadSwitches:
+ 5442   61   000028 F602 40             ldab      PTT               ;IF PT2 and PT3 LO
+ 5443   62   00002B 57                  asrb       
+ 5444   63   00002C 57                  asrb
+ 5445   64   00002D C100                cmpb      #0
+Lab 2 - ECE 4436
+Freescale HC12-Assembler 
+(c) Copyright Freescale 1987-2005
+
+ Abs. Rel.   Loc    Obj. code   Source line
+ ---- ----   ------ ---------   -----------
+ 5446   65   00002F 2603                bne       ELSE_TEST         ;IF PT2 or/and PT3 HI -> ELSE_TEST
+ 5447   66   000031 C600                ldab      #0
+ 5448   67   000033 3D                  rts       
+ 5449   68                      ELSE_TEST:                                              
+ 5450   69   000034 C103                cmpb      #3                ;IF PT2 XOR PT3 HI
+ 5451   70   000036 2403                bhs       ELSE_LAST         ;IF PT2 and PT3 HI -> ELSE_LAST
+ 5452   71   000038 C601                ldab      #1
+ 5453   72   00003A 3D                  rts
+ 5454   73                      ELSE_LAST:
+ 5455   74   00003B C600                ldab      #0                ;IF PT2 and PT3 HI
+ 5456   75   00003D 3D                  rts
+ 5457   76                              
+ 5458   77                      ;******************************************
+ 5459   78                      ; Code Section WriteSwitches
+ 5460   79                      WriteSwitches:
+ 5461   80   00003E C101                cmpb      #1                ;IF B Register from ReadSwitches =1
+ 5462   81   000040 2505                blo       ELSE_WRITE        ;Turn on LEDS
+ 5463   82   000042 1D02 4003           bclr      PTT, T_SETTING
+ 5464   83   000046 3D                  rts
+ 5465   84                      ELSE_WRITE:                         ;IF B Register from ReadSwitches =0
+ 5466   85   000047 1C02 4003           bset      PTT, T_SETTING    ;Turn off LEDS
+ 5467   86   00004B 3D                  rts       
+ 5468   87                              
+ 5469   88                      ;******************************************
+ 5470   89                      ; Constant data in ROM
+ 5471   90                      Const:  SECTION
+ 5472   91                      
+ 5473   92                      
+ 5474   93                      ;******************************************
+ 5475   94                      ; Variable data in RAM
+ 5476   95                      Data:   SECTION        
+ 5477   96                      
+ 5478   97                      
