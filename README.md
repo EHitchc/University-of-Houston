@@ -4,7 +4,7 @@ UH Projects and Coursework
 
 
 
-COSC 4351 - Fundamentals of Software Engineering 	C#, .NET Core 2.0  
+COSC 4351 - Fundamentals of Software Engineering 	&ensp;C#, .NET Core 2.0  
 ECE 3317 - Applied Electromagnetic Waves 		Matlab  
 ECE 3331 - Programming Applications in Electical and Computer Engineering	C  
 ECE 3337 - Signals and Systems Analysis			Matlab  
